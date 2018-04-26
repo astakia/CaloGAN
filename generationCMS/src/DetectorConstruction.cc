@@ -87,26 +87,22 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 void DetectorConstruction::DefineMaterials()
 { 
   // Lead material defined using NIST Manager
-  G4NistManager* nistManager = G4NistManager::Instance();
-  nistManager->FindOrBuildMaterial("G4_Pb");
+  //  G4NistManager* nistManager = G4NistManager::Instance();
+  //  nistManager->FindOrBuildMaterial("G4_Pb");
   
-  // Liquid argon material
-  G4double a;  // mass of a mole;
-  G4double z;  // z=mean number of protons;  
-  G4double density;
-  G4int natoms;
-  new G4Material("liquidArgon", z=18., a= 39.95*g/mole, density= 1.390*g/cm3);
-         // The argon by NIST Manager is a gas with a different density
+  // LeadTungstate material
+  a = 207.20*g/mole;
+  G4Element* elPb = new G4Element(name="Lead" ,symbol="Pb", z=82., a);
+  a = 183.84*g/mole;
+  G4Element* elW = new G4Element(name="Tungsten" ,symbol="W", z=74., a);
+  a = 16.00*g/mole; 
+  G4Element* elO = new G4Element(name="Oxygen" ,symbol="O" , z= 8., a);
 
-  // Scintilator material
-  a = 1.01*g/mole;
-  G4Element* elH  = new G4Element("Hydrogen", "H" , z=1., a);
-  a = 12.01*g/mole;
-  G4Element* elC  = new G4Element("Carbon"  ,"C" , z=6., a);
-  G4Material* Sci = new G4Material("Scintillator", density = 1.032*g/cm3, 2);
-  Sci->AddElement(elC, natoms=9);
-  Sci->AddElement(elH, natoms=10);
-
+  density = 8.280*g/cm3;
+  G4Material* PbWO4 = new G4Material(name="PbWO4", density, ncomponents=3);
+  PbWO4->AddElement(elPb, natoms=1);
+  PbWO4->AddElement(elW , natoms=1);
+  PbWO4->AddElement(elO , natoms=4);
 
   // Vacuum
   new G4Material("Galactic", z=1., a=1.01*g/mole,density= universe_mean_density,
