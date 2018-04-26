@@ -166,7 +166,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
   //  
   G4VSolid* calorimeterS
     = new G4Box("Calorimeter",     // its name
-                 calorSizeXY/2, calorSizeXY/2, calorThickness/2); // its size
+                 calorSizeXY/2, calorSizeXY/2, crystalLength/2); // its size
                          
   G4LogicalVolume* calorLV
     = new G4LogicalVolume(
@@ -185,50 +185,58 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
                  fCheckOverlaps);  // checking overlaps 
   
   //                                 
-  // Layer
+  // Row
   //
-  G4VSolid* layerS 
-    = new G4Box("Layer",           // its name
-                 calorSizeXY/2, calorSizeXY/2, layerThickness/2); // its size
+  G4VSolid* rowS 
+    = new G4Box("Row",           // its name
+                 calorSizeXY/2, crystalSizeXY/2, crystalLength/2); // its size
                          
-  G4LogicalVolume* layerLV
+  G4LogicalVolume* rowLV
     = new G4LogicalVolume(
-                 layerS,           // its solid
+                 rowS,           // its solid
                  defaultMaterial,  // its material
-                 "Layer");         // its name
+                 "Row");         // its name
 
   new G4PVReplica(
-                 "Layer",          // its name
-                 layerLV,          // its logical volume
+                 "SuperCrystal",          // its name
+                 rowLV,          // its logical volume
                  calorLV,          // its mother
-                 kZAxis,           // axis of replication
-                 nofLayers,        // number of replica
-                 layerThickness);  // witdth of replica
+                 kYAxis,           // axis of replication
+                 nOfCrystalsInSCedgeXY,        // number of replica
+                 crystalSizeXY);  // witdth of replica
   
   //                               
-  // Absorber
+  // Crystal
   //
   G4VSolid* absorberS 
-    = new G4Box("Abso",            // its name
-                 calorSizeXY/2, calorSizeXY/2, absoThickness/2); // its size
+    = new G4Box("Crystal",            // its name
+                 crystalSizeXY/2, crystalSizeXY/2, crystalLength/2); // its size
                          
-  G4LogicalVolume* absorberLV
+  G4LogicalVolume* crystalLV
     = new G4LogicalVolume(
-                 absorberS,        // its solid
-                 absorberMaterial, // its material
-                 "Abso");          // its name
+                 crystalS,        // its solid
+                 crystalMaterial, // its material
+                 "Crystal");          // its name
                                    
-  fAbsorberPV
+  fCrystalPV
     = new G4PVPlacement(
                  0,                // no rotation
-                 G4ThreeVector(0., 0., -gapThickness/2), // its position
-                 absorberLV,       // its logical volume                         
-                 "Abso",           // its name
-                 layerLV,          // its mother  volume
+                 G4ThreeVector(0., 0., 0.), // its position
+                 crystalLV,       // its logical volume                         
+                 "Crystal",           // its name
+                 rowLV,          // its mother  volume
                  false,            // no boolean operation
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
 
+  new G4PVReplica(
+                 "CrystalRow",          // its name
+                 crystalLV,          // its logical volume
+                 rowLV,          // its mother
+                 kXAxis,           // axis of replication
+                 nOfCrystalsInSCedgeXY,        // number of replica
+                 crystalSizeXY);  // witdth of replica
+  
   //                               
   // Gap
   //
@@ -259,10 +267,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
   G4cout
     << G4endl 
     << "------------------------------------------------------------" << G4endl
-    << "---> The calorimeter is " << nofLayers << " layers of: [ "
-    << absoThickness/mm << "mm of " << absorberMaterial->GetName() 
-    << " + "
-    << gapThickness/mm << "mm of " << gapMaterial->GetName() << " ] " << G4endl
+    << "---> The calorimeter is " << nOfCrystalsInSCedgeXY << " * " << nOfCrystalsInSCedgeXY << " crystals of: [ front, rear face: "
+    << crystalSizeXY/mm << "mm and length of" << crystalLength/mm << "mm of " << crystalMaterial->GetName() << " ] " << G4endl
     << "------------------------------------------------------------" << G4endl;
   
   //                                        
