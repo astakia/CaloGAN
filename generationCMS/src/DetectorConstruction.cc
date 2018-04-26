@@ -117,22 +117,18 @@ void DetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
 {
   // Geometry parameters
-  G4double moduleSize = 121.2*cm;
-  G4int nofModules = 5;
-  G4int nofLayers = 66;
-  G4double absoThickness = 2.*mm;
-  G4double gapThickness =  4.*mm;
-  G4double calorSizeXY  = nofModules*moduleSize;
+  G4double crystalSizeXY = 24.7 * mm;
+  G4double crystalLength = 220. * mm;
 
-  G4double layerThickness = absoThickness + gapThickness;
-  G4double calorThickness = nofLayers * layerThickness;
+  G4int nOfCrystalsInSCedgeXY = 7;
+  G4double calorSizeXY  = nOfCrystalsInSCedgeXY * crystalSizeXY;
+
   G4double worldSizeXY = 1.2 * calorSizeXY;
-  G4double worldSizeZ  = 1.2 * calorThickness; 
-  
+  G4double worldSizeZ  = 1.2 * crystalLength;
+
   // Get materials
   G4Material* defaultMaterial = G4Material::GetMaterial("Galactic");
-  G4Material* absorberMaterial = G4Material::GetMaterial("G4_Pb");
-  G4Material* gapMaterial = G4Material::GetMaterial("Scintillator");
+  G4Material* crystalMaterial = G4Material::GetMaterial("PbWO4");
   
   if ( ! defaultMaterial || ! absorberMaterial || ! gapMaterial ) {
     G4ExceptionDescription msg;
