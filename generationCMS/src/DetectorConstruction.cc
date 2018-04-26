@@ -130,7 +130,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
   G4Material* defaultMaterial = G4Material::GetMaterial("Galactic");
   G4Material* crystalMaterial = G4Material::GetMaterial("PbWO4");
   
-  if ( ! defaultMaterial || ! absorberMaterial || ! gapMaterial ) {
+  if ( ! defaultMaterial || ! crystalMaterial ) {
     G4ExceptionDescription msg;
     msg << "Cannot retrieve materials already defined."; 
     G4Exception("DetectorConstruction::DefineVolumes()",
@@ -236,30 +236,6 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
                  kXAxis,           // axis of replication
                  nOfCrystalsInSCedgeXY,        // number of replica
                  crystalSizeXY);  // witdth of replica
-  
-  //                               
-  // Gap
-  //
-  G4VSolid* gapS 
-    = new G4Box("Gap",             // its name
-                 calorSizeXY/2, calorSizeXY/2, gapThickness/2); // its size
-                         
-  G4LogicalVolume* gapLV
-    = new G4LogicalVolume(
-                 gapS,             // its solid
-                 gapMaterial,      // its material
-                 "Gap");           // its name
-                                   
-  fGapPV
-    = new G4PVPlacement(
-                 0,                // no rotation
-                 G4ThreeVector(0., 0., absoThickness/2), // its position
-                 gapLV,            // its logical volume                         
-                 "Gap",            // its name
-                 layerLV,          // its mother  volume
-                 false,            // no boolean operation
-                 0,                // copy number
-                 fCheckOverlaps);  // checking overlaps 
   
   //
   // print parameters
