@@ -38,15 +38,15 @@ class G4VPhysicalVolume;
 class G4GlobalMagFieldMessenger;
 
 /// Detector construction class to define materials and geometry.
-/// The calorimeter is a box made of a given number of layers. A layer consists
-/// of an absorber plate and of a detection gap. The layer is replicated.
-///
+/// The calorimeter is a box made of a given number of rows. A row consists
+/// of crystals. The crystals are replicated inside the row and
+/// the row is also replicated inside a super-crystal structure.
 /// Four parameters define the geometry of the calorimeter :
 ///
-/// - the thickness of an absorber plate,
-/// - the thickness of a gap,
-/// - the number of layers,
-/// - the transverse size of the calorimeter (the input face is a square).
+/// - the dimensions of the crystal's front face (square)
+/// - the length of the crystal,
+/// - the number of crystals in a row,
+/// - the number of rows in a super-crystal,
 ///
 /// In addition a transverse uniform magnetic field is defined 
 /// via G4GlobalMagFieldMessenger class.
@@ -63,8 +63,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     // get methods
     //
-    const G4VPhysicalVolume* GetAbsorberPV() const;
-    const G4VPhysicalVolume* GetGapPV() const;
+    const G4VPhysicalVolume* GetCrystalPV() const;
      
   private:
     // methods
@@ -77,22 +76,17 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     static G4ThreadLocal G4GlobalMagFieldMessenger*  fMagFieldMessenger; 
                                       // magnetic field messenger
      
-    G4VPhysicalVolume*   fAbsorberPV; // the absorber physical volume
-    G4VPhysicalVolume*   fGapPV;      // the gap physical volume
+    G4VPhysicalVolume*   fCrystalPV; // the crystal physical volume
     
     G4bool  fCheckOverlaps; // option to activate checking of volumes overlaps
 };
 
 // inline functions
 
-inline const G4VPhysicalVolume* DetectorConstruction::GetAbsorberPV() const { 
-  return fAbsorberPV; 
+inline const G4VPhysicalVolume* DetectorConstruction::GetCrystalPV() const { 
+  return fCrystalPV;
 }
 
-inline const G4VPhysicalVolume* DetectorConstruction::GetGapPV() const  { 
-  return fGapPV; 
-}
-     
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
