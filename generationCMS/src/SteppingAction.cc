@@ -59,14 +59,14 @@ int SteppingAction::WhichZBin(double zpos){
 
 int SteppingAction::WhichXYbin(double xpos, double ypos, int zbin){
   double z = zbin;
-  G4double moduleSize = 121.2 * cm;
-  G4int nofModules = 5;
-  G4int cellsPerModules = 6;
-  int ix = int (floor(xpos/(moduleSize/cellsPerModules))) + nofModules*cellsPerModules/2;
-  int iy = int (floor(ypos/(moduleSize/cellsPerModules))) + nofModules*cellsPerModules/2;
-  int ixy = iy*nofModules*cellsPerModules + ix;
-  if (ix < 0 || iy < 0 || ix >= nofModules*cellsPerModules || iy >= nofModules*cellsPerModules) {
-    ixy = nofModules*cellsPerModules * nofModules*cellsPerModules;
+  G4double crystalSizeXY = 24.7 * mm;
+  G4int nOfCrystalsInSCedgeXY = 7;
+  G4int nOfCellsInCrystalEdgeXY = 6;
+  int ix = int (floor(xpos/(crystalSizeXY / nOfCellsInCrystalEdgeXY))) + nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY / 2;
+  int iy = int (floor(ypos/(crystalSizeXY / nOfCellsInCrystalEdgeXY))) + nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY / 2;
+  int ixy = iy * nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY + ix;
+  if (ix < 0 || iy < 0 || ix >= nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY || iy >= nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY) {
+    ixy = nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY * nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY;
   }
   return ixy;
 }
@@ -113,12 +113,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   // runData->Add(mybin, edep, stepLength); 
   runData->Add(mybin, edep); 
 
-  
-  if ( volume == fDetConstruction->GetAbsorberPV() ) {
-    runData->Add(kAbs, edep);
-  }
-  else if ( volume == fDetConstruction->GetGapPV() ) {
-    runData->Add(kGap, edep);
+  if ( volume == fDetConstruction->GetCrystalPV() ) {
+    runData->Add(kCrystal, edep);
   }
   // else{
   //   runData->Add(kAbs, edep);
