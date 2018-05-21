@@ -62,10 +62,10 @@ RunAction::RunAction()
   //
   
   // Creating histograms
-   analysisManager->CreateH1("1","Edep in absorber", 100, 0., 800*MeV);
-   analysisManager->CreateH1("2","Edep in gap", 100, 0., 100*MeV);
-   analysisManager->CreateH1("3","trackL in absorber", 100, 0., 1*m);
-   analysisManager->CreateH1("4","trackL in gap", 100, 0., 50*cm);
+   analysisManager->CreateH1("1","Edep", 100, 0., 800*MeV);
+//   analysisManager->CreateH1("2","Edep in gap", 100, 0., 100*MeV);
+   analysisManager->CreateH1("3","trackL", 100, 0., 1*m);
+//   analysisManager->CreateH1("4","trackL in gap", 100, 0., 50*cm);
 
   // Creating ntuple
   //
@@ -76,7 +76,7 @@ RunAction::RunAction()
 
   analysisManager->CreateNtuple(fname.c_str(), "Edep and TrackL");
 
-  int total_bins = 5*5*6*6 + 1;  // 3 overflow bins for the three calo layers
+  int total_bins = 7*7 + 1;  // 3 overflow bins for the three calo layers
 
   for (int i = 0; i < total_bins; ++i) {
 
@@ -86,10 +86,8 @@ RunAction::RunAction()
   }
   analysisManager->CreateNtupleDColumn("TotalEnergy");
   
-  analysisManager->CreateNtupleDColumn("Eabs");
-  analysisManager->CreateNtupleDColumn("Egap");
-  analysisManager->CreateNtupleDColumn("Labs");
-  analysisManager->CreateNtupleDColumn("Lgap");
+  analysisManager->CreateNtupleDColumn("E");
+  analysisManager->CreateNtupleDColumn("L");
 
 
 

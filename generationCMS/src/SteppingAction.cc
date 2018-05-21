@@ -61,12 +61,11 @@ int SteppingAction::WhichXYbin(double xpos, double ypos, int zbin){
   double z = zbin;
   G4double crystalSizeXY = 24.7 * mm;
   G4int nOfCrystalsInSCedgeXY = 7;
-  G4int nOfCellsInCrystalEdgeXY = 6;
-  int ix = int (floor(xpos/(crystalSizeXY / nOfCellsInCrystalEdgeXY))) + nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY / 2;
-  int iy = int (floor(ypos/(crystalSizeXY / nOfCellsInCrystalEdgeXY))) + nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY / 2;
-  int ixy = iy * nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY + ix;
-  if (ix < 0 || iy < 0 || ix >= nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY || iy >= nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY) {
-    ixy = nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY * nOfCrystalsInSCedgeXY * nOfCellsInCrystalEdgeXY;
+  int ix = int (floor(xpos/crystalSizeXY)) + nOfCrystalsInSCedgeXY / 2;
+  int iy = int (floor(ypos/crystalSizeXY)) + nOfCrystalsInSCedgeXY / 2;
+  int ixy = iy * nOfCrystalsInSCedgeXY + ix;
+  if (ix < 0 || iy < 0 || ix >= nOfCrystalsInSCedgeXY || iy >= nOfCrystalsInSCedgeXY) {
+    ixy = nOfCrystalsInSCedgeXY * nOfCrystalsInSCedgeXY;
   }
   return ixy;
 }

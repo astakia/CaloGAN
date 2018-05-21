@@ -39,7 +39,7 @@ class DetectorConstruction;
 /// Stepping action class.
 ///
 /// In UserSteppingAction() there are collected the energy deposit and track 
-/// lengths of charged particles in Absober and Gap layers and
+/// lengths of charged particles in the crystals and
 /// updated in RunData object.
 
 class SteppingAction : public G4UserSteppingAction

@@ -37,7 +37,7 @@
 /// Event action class
 ///
 /// In EndOfEventAction(), it prints the accumulated quantities of the energy 
-/// deposit and track lengths of charged particles in Absober and Gap layers 
+/// deposit and track lengths of charged particles in the crystals 
 /// stored in RunData object.
 
 class EventAction : public G4UserEventAction
@@ -51,8 +51,7 @@ class EventAction : public G4UserEventAction
     
   private:
     // methods
-    void PrintEventStatistics(G4double absoEdep, G4double absoTrackLength,
-                              G4double gapEdep, G4double gapTrackLength) const;
+    void PrintEventStatistics(G4double Edep, G4double TrackLength) const;
 };
                      
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

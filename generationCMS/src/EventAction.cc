@@ -51,21 +51,14 @@ EventAction::~EventAction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void EventAction::PrintEventStatistics(
-                              G4double absoEdep, G4double absoTrackLength,
-                              G4double gapEdep, G4double gapTrackLength) const
+void EventAction::PrintEventStatistics(G4double Edep, G4double TrackLength) const
 {
   // print event statistics
   G4cout
-     << "   Absorber: total energy: " 
-     << std::setw(7) << G4BestUnit(absoEdep, "Energy")
-     << "       total track length: " 
-     << std::setw(7) << G4BestUnit(absoTrackLength, "Length")
-     << G4endl
-     << "        Gap: total energy: " 
-     << std::setw(7) << G4BestUnit(gapEdep, "Energy")
-     << "       total track length: " 
-     << std::setw(7) << G4BestUnit(gapTrackLength, "Length")
+     << "   Total energy: "
+     << std::setw(7) << G4BestUnit(Edep, "Energy")
+     << "   Total track length: "
+     << std::setw(7) << G4BestUnit(TrackLength, "Length")
      << G4endl;
 }
 

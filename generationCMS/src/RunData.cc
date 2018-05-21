@@ -41,7 +41,7 @@ RunData::RunData() : G4Run()//, fNumCells(4815)
   // fVolumeNames[0] = "Absorber";
   // fVolumeNames[1] = "Gap";
  
-  for ( G4int i=0; i < kNumCells; i++) {
+  for ( G4int i=0; i < kNumCrystals; i++) {
     fEdep[i] = 0.;
     // fTrackLength[i] = 0.; 
   }  
@@ -61,12 +61,12 @@ void RunData::FillPerEvent()
   //accumulate statistic
   //
 
-  for (int i = 0; i < kNumCells; ++i) {
+  for (int i = 0; i < kNumCrystals; ++i) {
     // analysisManager->CreateNtupleDColumn("cell_" + std::to_string(i));
     analysisManager->FillNtupleDColumn(i, fEdep[i]);
     //    std::cout << "save energy " << i << ' ' << fEdep[i] << std::endl;
   }
-  analysisManager->FillNtupleDColumn(kNumCells, GetTotalEnergy());
+  analysisManager->FillNtupleDColumn(kNumCrystals, GetTotalEnergy());
 
   // for ( G4int i=0; i<kDim; i++) {
   //   // fill histograms
@@ -85,7 +85,7 @@ void RunData::FillPerEvent()
 
 void RunData::Reset()
 { 
-  for ( G4int i=0; i<kNumCells; i++) {
+  for ( G4int i=0; i<kNumCrystals; i++) {
     fEdep[i] = 0.;
     // fTrackLength[i] = 0.; 
   }  

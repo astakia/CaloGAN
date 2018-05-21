@@ -37,16 +37,14 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 enum {
-  kAbs = 0,
-  kGap = 1,
-  kDim = 2, 
-  kNumCells = 5*5*6*6 + 4 // 1 overflow bins for the the calo layers
-};  
+  kCrystal = 0,
+  kNumCrystals = 7*7 + 1 // 1 overflow bins for the the calo layers
+};
 
 ///  Run data class
 ///
 /// It defines data members to hold the energy deposit and track lengths
-/// of charged particles in Absober and Gap layers.
+/// of charged particles in the crystals.
 /// 
 /// In order to reduce the number of data members a 2-dimensions array 
 /// is introduced for each quantity:
@@ -77,7 +75,7 @@ public:
 
 private:
   // G4String  fVolumeNames[kDim];
-  G4double  fEdep[kNumCells];
+  G4double  fEdep[kNumCrystals];
   G4double TotalEnergy;
   // G4double  fTrackLength[kDim];
 };
