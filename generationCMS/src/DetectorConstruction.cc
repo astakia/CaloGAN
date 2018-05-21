@@ -85,18 +85,22 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void DetectorConstruction::DefineMaterials()
-{ 
+{
   // Lead material defined using NIST Manager
   //  G4NistManager* nistManager = G4NistManager::Instance();
   //  nistManager->FindOrBuildMaterial("G4_Pb");
-  
+
+  G4String name, symbol;
+  G4double a, z, density;
+  G4int ncomponents, natoms;
+
   // LeadTungstate material
   a = 207.20*g/mole;
-  G4Element* elPb = new G4Element(name="Lead" ,symbol="Pb", z=82., a);
+  G4Element* elPb = new G4Element(name="Lead", symbol="Pb", z=82., a);
   a = 183.84*g/mole;
-  G4Element* elW = new G4Element(name="Tungsten" ,symbol="W", z=74., a);
-  a = 16.00*g/mole; 
-  G4Element* elO = new G4Element(name="Oxygen" ,symbol="O" , z= 8., a);
+  G4Element* elW = new G4Element(name="Tungsten", symbol="W", z=74., a);
+  a = 16.00*g/mole;
+  G4Element* elO = new G4Element(name="Oxygen", symbol="O", z= 8., a);
 
   density = 8.280*g/cm3;
   G4Material* PbWO4 = new G4Material(name="PbWO4", density, ncomponents=3);
@@ -208,7 +212,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
   //                               
   // Crystal
   //
-  G4VSolid* absorberS 
+  G4VSolid* crystalS 
     = new G4Box("Crystal",            // its name
                  crystalSizeXY/2, crystalSizeXY/2, crystalLength/2); // its size
                          
