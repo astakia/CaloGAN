@@ -28,8 +28,8 @@
 /// \file RunData.hh
 /// \brief Definition of the RunData class
 
-#ifndef RunData_h
-#define RunData_h 1
+#ifndef GENERATIONCMS_INCLUDE_RUNDATA_H_
+#define GENERATIONCMS_INCLUDE_RUNDATA_H_
 
 #include "G4Run.hh"
 #include "globals.hh"
@@ -102,5 +102,5 @@ inline G4double  RunData::GetEdep(G4int id) const {
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_RUNDATA_H_
 

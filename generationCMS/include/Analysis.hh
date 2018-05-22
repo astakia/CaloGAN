@@ -28,10 +28,10 @@
 /// \file Analysis.hh
 /// \brief Selection of the analysis technology
 
-#ifndef Analysis_h
-#define Analysis_h 1
+#ifndef GENERATIONCMS_INCLUDE_ANALYSIS_H_
+#define GENERATIONCMS_INCLUDE_ANALYSIS_H_
 
 #include "g4root.hh"
 //#include "g4xml.hh"
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_ANALYSIS_H_

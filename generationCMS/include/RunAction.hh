@@ -28,8 +28,8 @@
 /// \file RunAction.hh
 /// \brief Definition of the RunAction class
 
-#ifndef RunAction_h
-#define RunAction_h 1
+#ifndef GENERATIONCMS_INCLUDE_RUNACTION_H_
+#define GENERATIONCMS_INCLUDE_RUNACTION_H_
 
 #include "G4UserRunAction.hh"
 #include "globals.hh"
@@ -68,5 +68,5 @@ class RunAction : public G4UserRunAction
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_RUNACTION_H_
 

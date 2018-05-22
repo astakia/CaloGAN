@@ -28,8 +28,8 @@
 /// \file SteppingAction.hh
 /// \brief Definition of the SteppingAction class
 
-#ifndef SteppingAction_h
-#define SteppingAction_h 1
+#ifndef GENERATIONCMS_INCLUDE_STEPPINGACTION_H_
+#define GENERATIONCMS_INCLUDE_STEPPINGACTION_H_
 
 #include "G4UserSteppingAction.hh"
 #include "g4root.hh"
@@ -58,4 +58,4 @@ private:
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_STEPPINGACTION_H_

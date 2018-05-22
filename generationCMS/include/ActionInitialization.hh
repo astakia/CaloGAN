@@ -28,8 +28,8 @@
 /// \file ActionInitialization.hh
 /// \brief Definition of the ActionInitialization class
 
-#ifndef ActionInitialization_h
-#define ActionInitialization_h 1
+#ifndef GENERATIONCMS_INCLUDE_ACTIONINITIALIZATION_H_
+#define GENERATIONCMS_INCLUDE_ACTIONINITIALIZATION_H_
 
 #include "G4VUserActionInitialization.hh"
 
@@ -51,5 +51,5 @@ class ActionInitialization : public G4VUserActionInitialization
     DetectorConstruction* fDetConstruction;
 };
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_ACTIONINITIALIZATION_H_
 

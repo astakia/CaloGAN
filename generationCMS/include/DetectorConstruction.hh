@@ -28,8 +28,8 @@
 /// \file DetectorConstruction.hh
 /// \brief Definition of the DetectorConstruction class
 
-#ifndef DetectorConstruction_h
-#define DetectorConstruction_h 1
+#ifndef GENERATIONCMS_INCLUDE_DETECTORCONSTRUCTION_H_
+#define GENERATIONCMS_INCLUDE_DETECTORCONSTRUCTION_H_
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
@@ -90,5 +90,5 @@ inline const G4VPhysicalVolume* DetectorConstruction::GetCrystalPV() const {
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_DETECTORCONSTRUCTION_H_
 

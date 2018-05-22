@@ -28,8 +28,8 @@
 /// \file PrimaryGeneratorAction.hh
 /// \brief Definition of the PrimaryGeneratorAction class
 
-#ifndef PrimaryGeneratorAction_h
-#define PrimaryGeneratorAction_h 1
+#ifndef GENERATIONCMS_INCLUDE_PRIMARYGENERATORACTION_H_
+#define GENERATIONCMS_INCLUDE_PRIMARYGENERATORACTION_H_
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"
@@ -64,6 +64,6 @@ private:
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_PRIMARYGENERATORACTION_H_
 
 

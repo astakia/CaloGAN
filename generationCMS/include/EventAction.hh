@@ -28,8 +28,8 @@
 /// \file EventAction.hh
 /// \brief Definition of the EventAction class
 
-#ifndef EventAction_h
-#define EventAction_h 1
+#ifndef GENERATIONCMS_INCLUDE_EVENTACTION_H_
+#define GENERATIONCMS_INCLUDE_EVENTACTION_H_
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"
@@ -56,6 +56,6 @@ class EventAction : public G4UserEventAction
                      
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#endif
+#endif  // GENERATIONCMS_INCLUDE_EVENTACTION_H_
 
     
